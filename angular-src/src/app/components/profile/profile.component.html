@@ -1,0 +1,83 @@
+<div *ngIf="user">
+  <div class="row profile">
+    <div class="col-md-3 no-padding-left">
+      <div class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic">
+          <img src="https://images.contentful.com/1r3dg1d9tmt6/hyWrhI01NumAsYce2cyY2/d72027a5a73a9066d909c1646e9951c5/daniel.malmros_1517558194964.png"
+            class="img-responsive" alt="">
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            {{user.firstName}}
+          </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+        <div class="profile-userbuttons">
+					<button type="button" class="btn btn-success btn-sm">Ask for a match!</button>
+				</div>
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li>
+              <a href="#">
+                <i class="glyphicon glyphicon-user"></i>
+                Account Settings </a>
+            </li>
+            <li>
+              <a href="#" target="_blank">
+                <i class="glyphicon glyphicon-ok"></i>
+                Add single wins </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="glyphicon glyphicon-flag"></i>
+                Add double wins </a>
+            </li>
+          </ul>
+        </div>
+        <!-- END MENU -->
+
+        <div class="portlet light">
+          <!-- STAT -->
+          <div class="row list-separated profile-stat">
+            <div class="col-md-6 col-sm-6">
+              <div class="uppercase profile-stat-title">{{ user.singleWins }}</div>
+              <div class="uppercase profile-stat-text">Single wins</div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="uppercase profile-stat-title">{{ user.doubleWins }}</div>
+              <div class="uppercase profile-stat-text">Double wins</div>
+            </div>
+          </div>
+          <!-- END STAT -->
+          <div>
+            <div class="margin-top-20 profile-desc-link">
+              <i class="fa fa-globe"></i>
+              <a href="https://www.apollowebstudio.com">www.bymalmros.com</a>
+            </div>
+            <div class="margin-top-20 profile-desc-link">
+              <i class="fa fa-twitter"></i>
+              <a href="https://www.twitter.com/dmalmros/">@dmalmros</a>
+            </div>
+            <div class="margin-top-20 profile-desc-link">
+              <i class="fa fa-facebook"></i>
+              <a href="https://www.facebook.com/dmalmros">danielmalmros</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 no-padding-right">
+      <div class="profile-content">
+        Some user related content goes here...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

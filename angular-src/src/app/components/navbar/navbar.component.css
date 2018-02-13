@@ -1,0 +1,7 @@
+.nav-item {
+    padding-right: 10px;
+}
+
+.nav-item:last-child {
+    padding-right: 0px;
+}

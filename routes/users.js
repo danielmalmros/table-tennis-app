@@ -68,6 +68,7 @@ router.post('/authenticate', (req, res, next) => {
     });
 });
 
+
 // Profile image
 // router.post('/picture-upload', upload.single('avatar'), (req, res, next) => {
 //     // let newProfileImg = {
@@ -97,6 +98,43 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
     res.json({
         user: req.user
     })
+});
+
+// Edit profile
+router.post('/editProfile:id', (req, res, next) => {
+
+    User.findById(req.user._id, (err, user) => {
+
+        // todo: don't forget to handle err
+
+        if (!user) {
+            req.flash('error', 'No account found');
+            return res.redirect('/edit');
+        }
+
+        // good idea to trim 
+        var email = req.body.email.trim();
+        var firstname = req.body.firstname.trim();
+        var lastname = req.body.lastname.trim();
+
+        // validate 
+        if (!email || !firstname || !lastname) { // simplified: '' is a falsey
+            req.flash('error', 'One or more fields are empty');
+            return res.redirect('/edit'); // modified
+        }
+
+        user.email = email;
+        user.firstName = firstname;
+        user.lastName = lastname;
+
+        // don't forget to save!
+        user.save(function (err) {
+
+            // todo: don't forget to handle err
+
+            res.redirect('/profile');
+        });
+    });
 });
 
 module.exports = router;

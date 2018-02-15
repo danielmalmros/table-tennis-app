@@ -35,8 +35,6 @@ export class RegisterComponent implements OnInit {
 
     // Validation fields
     if (!this.validateService.validateRegister(user)) { 
-      console.log(this.validateService.validateRegister(user));
-           
       this.flashMessage.show('Please fill in all fields!', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }

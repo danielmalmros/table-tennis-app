@@ -20,6 +20,13 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/register', user, {headers: headers}).map(res => res.json());
   }
 
+  updateUser(user) {
+    let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/register', user, {headers: headers}).map(res => res.json());
+  }
+
   // uploadProfileImage(profileImg) {
   //   let headers = new Headers();
 

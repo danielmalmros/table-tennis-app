@@ -1,3 +1,4 @@
+"use strict";
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
@@ -101,39 +102,22 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
 });
 
 // Edit profile
-router.post('/editProfile:id', (req, res, next) => {
-
-    User.findById(req.user._id, (err, user) => {
-
-        // todo: don't forget to handle err
-
-        if (!user) {
-            req.flash('error', 'No account found');
-            return res.redirect('/edit');
+router.post('/editprofile/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    User.findByIdAndUpdate(req.params.id, {
+        $set: {
+            "firstName": req.body.firstName,
+            "lastName": req.body.lastName,
+            "singleWins": req.body.singleWins
         }
-
-        // good idea to trim 
-        var email = req.body.email.trim();
-        var firstname = req.body.firstname.trim();
-        var lastname = req.body.lastname.trim();
-
-        // validate 
-        if (!email || !firstname || !lastname) { // simplified: '' is a falsey
-            req.flash('error', 'One or more fields are empty');
-            return res.redirect('/edit'); // modified
-        }
-
-        user.email = email;
-        user.firstName = firstname;
-        user.lastName = lastname;
-
-        // don't forget to save!
-        user.save(function (err) {
-
-            // todo: don't forget to handle err
-
-            res.redirect('/profile');
-        });
+    },{
+        upsert: true
+    },
+    (err, updatedUser) => {
+        if (err) {
+            res.send('Error updating user!');
+        } else {
+            return res.json({ message: 'User updated!' });
+        }   
     });
 });
 

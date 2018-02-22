@@ -107,7 +107,8 @@ router.post('/editprofile/:id', passport.authenticate('jwt', {session: false}), 
         $set: {
             "firstName": req.body.firstName,
             "lastName": req.body.lastName,
-            "singleWins": req.body.singleWins
+            "team": req.body.team,
+            "email": req.body.email
         }
     },{
         upsert: true
@@ -120,5 +121,42 @@ router.post('/editprofile/:id', passport.authenticate('jwt', {session: false}), 
         }   
     });
 });
+
+// Add Single wins
+router.post('/addsinglewins/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    User.findByIdAndUpdate(req.params.id, {
+        $set: {
+            "singleWins": req.body.singleWins
+        }
+    },{
+        upsert: true
+    },
+    (err, updatedUser) => {
+        if (err) {
+            res.send('Error updating single wins!');
+        } else {
+            return res.json({ message: 'Single wins updated!' });
+        }   
+    });
+});
+
+// Add Single wins
+router.post('/adddoublewins/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    User.findByIdAndUpdate(req.params.id, {
+        $set: {
+            "doubleWins": req.body.doubleWins
+        }
+    },{
+        upsert: true
+    },
+    (err, updatedUser) => {
+        if (err) {
+            res.send('Error updating double wins!');
+        } else {
+            return res.json({ message: 'Double wins updated!' });
+        }   
+    });
+});
+
 
 module.exports = router;

@@ -10,7 +10,6 @@ This application is created for developers inside creuna, to provide a custom in
 * [Express](https://expressjs.com/)
 * [Angular](https://angular.io/)
 * [NodeJS](https://nodejs.org/en/)
-
 * [nodemon](https://nodemon.io/) - Utility monitor
 * [bcrypt.js](https://github.com/dcodeIO/bcrypt.js)
 * [JSON Web Token](https://jwt.io/)
@@ -32,11 +31,31 @@ $ nodemon
 
 To install Angular check out the documentation in [angular-src](/angular-src/README.md) folder.
 
+## Basic use after installation:
 
+Run your MongoDB locally in a terminal in the background
 
-## Basic use:
+```sh
+$ mongod
+```
 
-* Comming soon
+To inspect your MongoDB open a terminal and type mongo and it will be ready to use
+
+```sh
+$ mongo
+```
+
+Run your node server in the root of the app folder
+
+```sh
+$ nodemon
+```
+
+Last but not least start your Angular application by `cd` to `/angular-src` and type
+
+```sh
+$ ng serve
+```
 
 ## TODO:
 

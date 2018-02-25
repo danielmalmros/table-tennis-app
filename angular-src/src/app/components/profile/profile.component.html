@@ -16,8 +16,8 @@
         </div>
         <!-- END SIDEBAR USER TITLE -->
         <div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Ask for a match!</button>
-				</div>
+          <button type="button" class="btn btn-success btn-sm">Ask for a match!</button>
+        </div>
         <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
           <ul class="nav">
@@ -72,12 +72,27 @@
     </div>
     <div class="col-md-9 no-padding-right">
       <div class="profile-content">
-        Some user related content goes here...
+        <h2 class="page-header">Edit user profile</h2>
+        <form (submit)="onEditSubmit()">
+          <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" [(ngModel)]="firstName" name="firstName" class="form-control" placeholder="Enter First Name">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" [(ngModel)]="lastName" name="lastName" class="form-control" placeholder="Enter Last Name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" [(ngModel)]="email" name="email" class="form-control" placeholder="Enter Email">
+          </div>
+          <div class="form-group">
+            <label for="team">Team</label>
+            <input type="team" [(ngModel)]="team" name="team" class="form-control" placeholder="Enter Team Name">
+          </div>
+          <input type="submit" class="btn btn-primary" value="Edit profile">
+        </form>
       </div>
     </div>
   </div>
 </div>
-
-
-
-

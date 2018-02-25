@@ -7,6 +7,7 @@ import { tokenNotExpired } from 'angular2-jwt'
 export class AuthService {
 
   authToken: any;
+  userId: any;
   user: any;
 
   constructor(
@@ -20,20 +21,15 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/register', user, {headers: headers}).map(res => res.json());
   }
 
-  updateUser(user) {
+  editUserProfile(user) {
     let headers = new Headers();
-
+    this.loadToken();
+    this.loadUserId();
+    
+    headers.append('Authorization', this.authToken)
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/register', user, {headers: headers}).map(res => res.json());
+    return this.http.post('http://localhost:3000/users/editprofile/' + this.userId, user, {headers: headers}).map(res => res.json());
   }
-
-  // uploadProfileImage(profileImg) {
-  //   let headers = new Headers();
-
-  //   headers.append('Content-Type', 'application/json');
-  //   return this.http.post('http://localhost:3000/users/register', profileImg, {headers: headers}).map(res => res.json());
-  // }
-
 
   authticateUser(user) {
     let headers = new Headers();
@@ -54,6 +50,7 @@ export class AuthService {
   storUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user_id', user.id)
 
     this.authToken = token;
     this.user = user;
@@ -62,6 +59,12 @@ export class AuthService {
   loadToken() {
     const token = localStorage.getItem('id_token');
     this.authToken = token;
+  }
+
+  loadUserId() {
+    let id = localStorage.getItem('user_id');
+    id = id.replace(/^"(.*)"$/, '$1');
+    this.userId = id
   }
 
   loggedIn() {

@@ -69,31 +69,6 @@ router.post('/authenticate', (req, res, next) => {
     });
 });
 
-
-// Profile image
-// router.post('/picture-upload', upload.single('avatar'), (req, res, next) => {
-//     // let newProfileImg = {
-//     //     img: req.body.img
-//     // }
-    
-
-//     var user = req.body;
-//     user.avatar.data = fs.readFileSync(req.file.path);
-//     user.avatar.contentType = req.file.mimetype;
-
-//     let newProfileImg = user.avatar.data;
-//     let fileType = user.avatar.contentType
-
-//     User.addProfileImage(newProfileImg, fileType, (err, user) => {
-//         if (err) {
-//             res.json({success: false, msg: 'Failed to register profile image'})
-//         } else {
-//             res.json({success: true, msg: 'Images uploaded'})
-//         }
-//     });
-// });
-
-
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     res.json({
@@ -117,7 +92,7 @@ router.post('/editprofile/:id', passport.authenticate('jwt', {session: false}), 
         if (err) {
             res.send('Error updating user!');
         } else {
-            return res.json({ message: 'User updated!' });
+            return res.json({success: true, message: 'User updated!' });
         }   
     });
 });

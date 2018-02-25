@@ -1,7 +1,7 @@
 {
-  "name": "mean-natural-kit",
+  "name": "table-tennis-app",
   "version": "1.0.0",
-  "description": "MEAN Stack authentication app",
+  "description": "Creuna Table Tennis Application",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

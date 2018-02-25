@@ -43,8 +43,8 @@ To install Angular check out the documentation in [angular-src](/angular-src/REA
 Please assign yourself to one or more TODO's, and create a feature branch.
 
 * Provide users with more options/profile settings
-* Create endpoint and post method to update single wins - `_Daniel_`
-* Create endpoint and post method to update double wins - `_Daniel_`
+* Create endpoint and post method to update single wins - `Daniel`
+* Create endpoint and post method to update double wins - `Daniel`
 * Create validation method, so users can't add multiple wins without opponent to validate a win
 * Create seperate view inside profile to show profile settings
 * Create option for users to ask for a match by clicking a button in opponents user profile

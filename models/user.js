@@ -76,9 +76,3 @@ module.exports.comparePassword = (candidatePassword, hash, callback) => {
         callback(null, isMatch);
     });
 }
-
-module.exports.addProfileImage = (newProfileImg, fileType, callback) => {
-    User.img.data = newProfileImg
-    User.img.contentType = fileType;
-    User.create();
-}

@@ -100,7 +100,7 @@ router.post('/editprofile/:id', passport.authenticate('jwt', {session: false}), 
 // Add Single wins
 router.post('/addsinglewins/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
     User.findByIdAndUpdate(req.params.id, {
-        $set: {
+        $inc: {
             "singleWins": req.body.singleWins
         }
     },{
@@ -110,7 +110,7 @@ router.post('/addsinglewins/:id', passport.authenticate('jwt', {session: false})
         if (err) {
             res.send('Error updating single wins!');
         } else {
-            return res.json({ message: 'Single wins updated!' });
+            return res.json({success: true, message: 'Single wins updated!' });
         }   
     });
 });
@@ -118,7 +118,7 @@ router.post('/addsinglewins/:id', passport.authenticate('jwt', {session: false})
 // Add Single wins
 router.post('/adddoublewins/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
     User.findByIdAndUpdate(req.params.id, {
-        $set: {
+        $inc: {
             "doubleWins": req.body.doubleWins
         }
     },{
@@ -128,7 +128,7 @@ router.post('/adddoublewins/:id', passport.authenticate('jwt', {session: false})
         if (err) {
             res.send('Error updating double wins!');
         } else {
-            return res.json({ message: 'Double wins updated!' });
+            return res.json({success: true, message: 'Double wins updated!' });
         }   
     });
 });

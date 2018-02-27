@@ -88,9 +88,20 @@
           </div>
           <div class="form-group">
             <label for="team">Team</label>
-            <input type="team" [(ngModel)]="team" name="team" class="form-control" placeholder="Enter Team Name">
+            <input type="text" [(ngModel)]="team" name="team" class="form-control" placeholder="Enter Team Name">
           </div>
           <input type="submit" class="btn btn-primary" value="Edit profile">
+        </form>
+
+        <br><hr><br>
+
+        <h2 class="page-header">Add single wins</h2>
+        <form (submit)="onAddSingleWinSubmit()">
+          <div class="form-group">
+            <label for="singleWins">Add single win</label>
+            <input type="number" [(ngModel)]="singleWins" name="singleWins" class="form-control" placeholder="Enter win">
+          </div>
+          <input type="submit" class="btn btn-primary" value="Add win">
         </form>
       </div>
     </div>

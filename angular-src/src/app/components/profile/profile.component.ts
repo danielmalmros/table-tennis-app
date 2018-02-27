@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnChanges {
   user: Object;
   firstName: String;
   lastName: String;
   team: String;
   email: String;
+  @Input() singleWins: Number;
 
   constructor(
     private validateService: ValidateService,
@@ -32,6 +33,11 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes.singleWins);
+  }
+
+  // Edit user profile
   onEditSubmit() {
     const user = {
       firstName: this.firstName,
@@ -57,4 +63,25 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  // Add single wins
+  onAddSingleWinSubmit() {
+    const user = {
+      singleWins: this.singleWins
+    }
+
+    // if (!this.validateService.validateEmail(user.email)) {
+    //   this.flashMessage.show('Please use a valid email!', { cssClass: 'alert-danger', timeout: 3000 })
+    //   return false;
+    // }
+    
+    this.authService.addSingleWins(user).subscribe(data => {
+      if (data.success) {
+        this.flashMessage.show('Your win is added!', { cssClass: 'alert-success', timeout: 3000 })
+        this.router.navigate(['/profile']);
+      } else {
+        this.flashMessage.show('Something went wrong!', { cssClass: 'alert-danger', timeout: 3000 })
+        this.router.navigate(['/profile']);
+      }
+    });
+  }
 }

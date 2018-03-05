@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database')
 
 const User = require('../models/user');
+const Ranking = require('../models/ranking');
 
 const multer = require('multer');
 const fs = require('fs');
@@ -19,14 +20,27 @@ router.post('/register', (req, res, next) => {
         username: req.body.username,
         password: req.body.password
     });
-    
+
+    let username = req.body.username
+
     User.addUser(newUser, (err, user) => {
         if (err) {
             res.json({success: false, msg: 'Failed to register user'})
         } else {
             res.json({success: true, msg: 'User registered'})
+            Ranking.addUserToRanking(username)
         }
     });
+
+    // Ranking.addUserToRanking(username, (err, user) => {
+    //     if (err) {
+    //         res.json({success: false, msg: 'Failed to add user to ranking'})
+    //     } else {
+    //         res.json({success: true, msg: 'User registered in raking list'})
+    //         Ranking.addUserToRanking(username)
+    //     }
+    // })
+    
 });
 
 // Authenticate
